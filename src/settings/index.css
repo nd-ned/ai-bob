@@ -13,20 +13,29 @@
     sans-serif;
 
   color-scheme: dark;
+
+  --primary-color: #61dafb;
+  --bg-dark: #202124;
+  --text-color: #f4f4f4;
+  --link-color: #61dafb;
+  --link-hover-color: #f4f4f4;
+  --active-color: #61dafb;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    background-color: #202124;
+    background-color: var(--bg-dark);
   }
 }
+
+/* define variables */
 
 body {
   margin: 0;
   padding: 0;
   font-size: 16px;
   line-height: 1.5;
-  color: #f4f4f4;
+  color: var(--text-color);
 }
 
 h1,
@@ -69,10 +78,10 @@ nav {
 nav a {
   display: block;
   padding: 10px 0;
-  color: #f4f4f4;
+  color: var(--link-color);
   text-decoration: none;
 }
 
 nav a:hover {
-  background-color: #333;
+  background-color: var(--link-hover-color);
 }
