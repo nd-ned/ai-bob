@@ -1,12 +1,10 @@
 import { AppContext } from '../App'
 import Sidebar from './components/Sidebar'
 
-import { useContext, useEffect } from 'preact/hooks'
+import { useContext } from 'preact/hooks'
 
 const Thread = () => {
-  const a = useContext(AppContext)
-
-  const { count, setCount } = a
+  const { count, setCount } = useContext(AppContext)
 
   return (
     <main className="main-container with-sidebar">

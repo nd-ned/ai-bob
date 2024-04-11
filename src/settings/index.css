@@ -14,12 +14,17 @@
 
   color-scheme: dark;
 
-  --primary-color: #61dafb;
+  --primary-color: #ff9f00;
   --bg-dark: #202124;
   --text-color: #f4f4f4;
   --link-color: #61dafb;
-  --link-hover-color: #f4f4f4;
-  --active-color: #61dafb;
+  --active-color: #eab153;
+  --active-hover: #db8900;
+  --secondary-hover: #ff9f001a;
+
+  --neutral-dark: #333333;
+  --neutral-light: #cccccc;
+  --neutral-gray: #999999;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -46,6 +51,7 @@ h5,
 h6 {
   margin: 0;
   font-weight: 600;
+  color: #fff;
 }
 
 .main-container {
@@ -63,6 +69,41 @@ h6 {
   flex: 1;
 }
 
+.content-wrapper {
+  padding: 20px;
+  background-color: var(--bg-dark);
+  border-radius: 5px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--neutral-dark);
+  border-radius: 5px;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.primary-btn {
+  padding: 10px 20px;
+  background-color: var(--primary-color);
+  border: 1px solid var(--active-color);
+  color: var(--text-color);
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.primary-btn:hover {
+  background-color: var(--active-hover);
+  border-color: var(--active-hover);
+}
+
 .sidebar-header {
   display: flex;
   justify-content: space-between;
@@ -77,11 +118,30 @@ nav {
 
 nav a {
   display: block;
-  padding: 10px 0;
-  color: var(--link-color);
+  padding: 10px 7px;
+  color: var(--text-color);
   text-decoration: none;
 }
 
+nav a.active {
+  color: var(--active-color);
+}
+
 nav a:hover {
-  background-color: var(--link-hover-color);
+  background-color: var(--secondary-hover);
+  border-radius: 5px;
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mr-1 {
+  margin-right: 10px;
+}
+
+.ml-1 {
+  margin-left: 10px;
 }

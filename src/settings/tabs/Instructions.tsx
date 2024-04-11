@@ -4,11 +4,7 @@ import { AppContext } from '../App'
 import { useContext } from 'preact/hooks'
 
 const Instructions = () => {
-  const a = useContext(AppContext)
-
-  console.log('a', a)
-
-  const { count, setCount } = a
+  const { count, setCount } = useContext(AppContext)
 
   return (
     <main className="main-container with-sidebar">
