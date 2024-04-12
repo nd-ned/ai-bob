@@ -1,0 +1,10 @@
+.assistants-list {
+  width: 250px;
+}
+
+.assistants-wrapper {
+  flex-direction: row;
+  display: flex;
+  align-items: stretch;
+  flex-grow: 1;
+}

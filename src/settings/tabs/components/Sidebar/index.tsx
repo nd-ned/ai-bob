@@ -12,12 +12,14 @@ const Sidebar = () => {
   }
 
   return (
-    <div>
+    <section className="sidebar p20">
       <SidebarHeader />
-
       <nav>
         <Link href={ROUTES.HOME} className={isActive(ROUTES.HOME)}>
           Home
+        </Link>
+        <Link href={ROUTES.ASSISTANTS} className={isActive(ROUTES.ASSISTANTS)}>
+          Assistants
         </Link>
         <Link href={ROUTES.THREAD} className={isActive(ROUTES.THREAD)}>
           Thread
@@ -29,7 +31,7 @@ const Sidebar = () => {
           Settings
         </Link>
       </nav>
-    </div>
+    </section>
   )
 }
 

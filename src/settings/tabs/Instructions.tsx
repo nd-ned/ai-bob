@@ -8,10 +8,8 @@ const Instructions = () => {
 
   return (
     <main className="main-container with-sidebar">
-      <section className="sidebar">
-        <Sidebar />
-      </section>
-      <section className="content">
+      <Sidebar />
+      <section className="content p20">
         <h1>Instructions {count}</h1>
         <p>Instructions content</p>
         <button onClick={() => setCount(count + 1)}>Increment</button>

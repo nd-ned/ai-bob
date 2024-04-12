@@ -14,6 +14,8 @@ interface AppContextValues {
   setOPENAI_API_KEY: (key: string) => void
   openai?: OpenAI
   logout: () => void
+  assistantId: string
+  setAssistantId: (assistant: string) => void
 }
 
 const initCtx: AppContextValues = {
@@ -24,6 +26,8 @@ const initCtx: AppContextValues = {
   OPENAI_API_KEY: '',
   setOPENAI_API_KEY: () => {},
   logout: () => {},
+  assistantId: '',
+  setAssistantId: () => {},
 }
 
 export const AppContext = createContext<AppContextValues>(initCtx)
@@ -33,6 +37,7 @@ const App = () => {
   const [count, setCount] = useState(initCtx.count)
   const [OPENAI_API_KEY, setOPENAI_API_KEY] = useState('')
   const [openai, setOpenai] = useState<OpenAI | undefined>()
+  const [assistantId, setAssistantId] = useState('')
 
   const globalCtxVal = useMemo(() => {
     return {
@@ -46,19 +51,22 @@ const App = () => {
       logout: () => {
         setOPENAI_API_KEY('')
       },
+      assistantId,
+      setAssistantId: (assistant: string) => setAssistantId(assistant),
     }
-  }, [count, loadingUI, OPENAI_API_KEY, openai])
+  }, [count, loadingUI, OPENAI_API_KEY, openai, assistantId])
 
   useEffect(() => {
     if (!loadingUI) {
       const appCtx = {
         count,
         OPENAI_API_KEY,
+        assistantId,
       }
 
       chrome.storage.sync.set({ appCtx })
     }
-  }, [loadingUI, count, OPENAI_API_KEY])
+  }, [loadingUI, count, OPENAI_API_KEY, assistantId])
 
   useEffect(() => {
     const startTime = Date.now()
@@ -69,6 +77,7 @@ const App = () => {
       if (appCtx) {
         setCount(appCtx.count)
         setOPENAI_API_KEY(appCtx.OPENAI_API_KEY)
+        setAssistantId(appCtx.assistantId)
       }
 
       const timeLeft = 400 - (Date.now() - startTime)

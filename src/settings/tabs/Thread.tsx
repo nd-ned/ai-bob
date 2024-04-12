@@ -8,10 +8,8 @@ const Thread = () => {
 
   return (
     <main className="main-container with-sidebar">
-      <section className="sidebar">
-        <Sidebar />
-      </section>
-      <section className="content">
+      <Sidebar />
+      <section className="content p20">
         <h1>Thread: "{count}"</h1>
         <p>Thread content</p>
         <button onClick={() => setCount(count + 1)}>Increment</button>

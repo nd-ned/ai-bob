@@ -77,16 +77,12 @@ const Settings = () => {
 
   return (
     <main className="main-container with-sidebar">
-      <section className="sidebar">
-        <Sidebar />
-      </section>
+      <Sidebar />
 
-      <section className="content">
-        <div className="content-wrapper">
-          <h1>Settings</h1>
+      <section className="content p20">
+        <h1>Settings</h1>
 
-          {OPENAI_API_KEY ? renderSettings() : renderWelcome()}
-        </div>
+        {OPENAI_API_KEY ? renderSettings() : renderWelcome()}
       </section>
     </main>
   )

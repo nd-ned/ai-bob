@@ -3,10 +3,8 @@ import Sidebar from './components/Sidebar'
 const Home = () => {
   return (
     <main className="main-container with-sidebar">
-      <section className="sidebar">
-        <Sidebar />
-      </section>
-      <section className="content">
+      <Sidebar />
+      <section className="content p20">
         <h1>Home</h1>
         <p>Home content</p>
       </section>
