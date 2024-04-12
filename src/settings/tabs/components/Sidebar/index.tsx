@@ -7,8 +7,6 @@ import { createHashHistory } from 'history'
 const Sidebar = () => {
   const history = createHashHistory()
 
-  console.log('history', history)
-
   const isActive = (route: string) => {
     return history.location.pathname === route ? 'active' : ''
   }

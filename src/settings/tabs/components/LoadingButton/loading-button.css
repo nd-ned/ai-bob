@@ -1,0 +1,15 @@
+.loading-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--neutral-light);
+  border: none;
+  cursor: pointer;
+  min-width: 80px;
+  white-space: nowrap;
+}
+
+.loading-button:disabled {
+  background-color: var(--neutral-dark);
+  cursor: not-allowed;
+}

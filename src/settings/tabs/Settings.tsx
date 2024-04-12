@@ -1,14 +1,35 @@
+import OpenAI from 'openai'
 import { useContext, useState } from 'preact/hooks'
 
 import Sidebar from './components/Sidebar'
 import { AppContext } from '../App'
+import LoadIndicator from './components/LoadIndicator'
+import LoadingButton from './components/LoadingButton'
 
 const Settings = () => {
-  const { OPENAI_API_KEY } = useContext(AppContext)
+  const { OPENAI_API_KEY, setOPENAI_API_KEY, logout } = useContext(AppContext)
 
   const [key, setKey] = useState(OPENAI_API_KEY)
+  const [errMsg, setErrMsg] = useState('')
 
-  // TODO: Implement save API key
+  const handleKey = async () => {
+    const openai = new OpenAI({
+      apiKey: key,
+      dangerouslyAllowBrowser: true,
+    })
+
+    try {
+      await openai.get('/models')
+
+      setErrMsg('')
+      setKey('')
+      setOPENAI_API_KEY(key)
+    } catch (error) {
+      console.error('Invalid API key', error)
+
+      setErrMsg('Invalid API key')
+    }
+  }
 
   const renderWelcome = () => {
     return (
@@ -23,20 +44,35 @@ const Settings = () => {
         </p>
         <div className="flex-between">
           <input
-            class="input mr-1"
+            className="input mr-1"
             type="text"
-            value={OPENAI_API_KEY}
-            placeholder="Enter your API key"
-          />
+            value={key}
+            onChange={(e) => {
+              const { value } = e.target as HTMLInputElement
 
-          <button class="primary-btn">Save</button>
+              setKey(value)
+            }}
+            placeholder="Enter your API key, e.g. 'sk-1234567890abcdef1234567890abcdef'"
+          />
+          <LoadingButton title="Save" onclick={handleKey} />
         </div>
+        {errMsg && <p className="error">{errMsg}</p>}
       </div>
     )
   }
 
   const renderSettings = () => {
-    return <div>Settings content Logout</div>
+    return (
+      <div>
+        <p>
+          Your OpenAI API key is set! You can now start using the Playground to interact with the
+          OpenAI API.
+        </p>
+        <button className="primary-btn" onClick={logout}>
+          Logout
+        </button>
+      </div>
+    )
   }
 
   return (

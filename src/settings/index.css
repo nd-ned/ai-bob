@@ -21,10 +21,16 @@
   --active-color: #eab153;
   --active-hover: #db8900;
   --secondary-hover: #ff9f001a;
+  --success-color: #5eba7d;
+  --warning-color: #f5d04d;
+  --error-color: #ff6b6b;
 
   --neutral-dark: #333333;
   --neutral-light: #cccccc;
   --neutral-gray: #999999;
+
+  --base-elm-height: 40px;
+  --base-radius: 4px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -69,19 +75,26 @@ h6 {
   flex: 1;
 }
 
+p.error {
+  color: var(--error-color);
+  margin: 0;
+  font-size: 14px;
+}
+
 .content-wrapper {
   padding: 20px;
   background-color: var(--bg-dark);
-  border-radius: 5px;
+  border-radius: var(--base-radius);
   max-width: 800px;
   margin: 0 auto;
 }
 
 .input {
   width: 100%;
-  padding: 10px;
-  border: 1px solid var(--neutral-dark);
-  border-radius: 5px;
+  border: none;
+  border-radius: var(--base-radius);
+  height: var(--base-elm-height);
+  padding: 0 10px;
 }
 
 .input:focus {
@@ -90,18 +103,33 @@ h6 {
 }
 
 .primary-btn {
-  padding: 10px 20px;
   background-color: var(--primary-color);
-  border: 1px solid var(--active-color);
   color: var(--text-color);
-  border-radius: 5px;
+  border-radius: var(--base-radius);
   cursor: pointer;
   font-weight: 600;
+  padding: 0 15px;
+  transition:
+    background-color 0.3s,
+    border-color 0.3s;
+}
+
+button {
+  height: var(--base-elm-height);
+  border-radius: var(--base-radius);
+  border: 1px solid var(--neutral-dark);
 }
 
 .primary-btn:hover {
   background-color: var(--active-hover);
   border-color: var(--active-hover);
+}
+
+.primary-btn:disabled {
+  background-color: var(--neutral-dark);
+  border-color: var(--neutral-dark);
+  color: var(--neutral-light);
+  cursor: not-allowed;
 }
 
 .sidebar-header {
@@ -129,7 +157,7 @@ nav a.active {
 
 nav a:hover {
   background-color: var(--secondary-hover);
-  border-radius: 5px;
+  border-radius: var(--base-radius);
 }
 
 .flex-between {
