@@ -4,9 +4,9 @@ import { Assistant } from 'openai/resources/beta/assistants/assistants'
 import Sidebar from '../components/Sidebar'
 import AddButton from '../components/AddButton'
 import { AppContext } from '../../App'
-import './assistants.css'
-import { FunctionalComponent } from 'preact'
 import LoadIndicator from '../components/LoadIndicator'
+import { useHashHistory } from '../../MainRouter'
+import './assistants.css'
 
 const models = [
   'gpt-4-turbo-2024-04-09',
@@ -24,18 +24,15 @@ const models = [
   'gpt-3.5-turbo',
 ]
 
-const Assistants: FunctionalComponent = (props) => {
-  const { openai, assistantId, setAssistantId } = useContext(AppContext)
-
-  // TODO: the router state should be accessed from the props, figure out how to incoporate get params in the hashHistory
+const Assistants = () => {
+  const { openai, setAssistantId } = useContext(AppContext)
+  const history = useHashHistory()
+  const { assistantId } = history.matches
 
   const [assistants, setAssistants] = useState<Assistant[]>([])
   const [loadingAssistants, setLoadingAssistants] = useState(true)
   const [loadingDetails, setLoadingDetails] = useState(true)
   const [selectedAssistant, setSelectedAssistant] = useState<Assistant | null>(null)
-
-  console.log('assistantId', assistantId)
-  console.log('selectedAssistant', selectedAssistant)
 
   const fetchAssistantDetails = async (assistantId: string) => {
     setLoadingDetails(true)
@@ -51,6 +48,8 @@ const Assistants: FunctionalComponent = (props) => {
 
   useEffect(() => {
     if (assistantId) {
+      setAssistantId(assistantId)
+
       fetchAssistantDetails(assistantId)
     }
   }, [assistantId])
@@ -86,7 +85,11 @@ const Assistants: FunctionalComponent = (props) => {
           <div
             className={`assistant menu-item ${assistantId === assistant.id ? 'active' : ''}`}
             key={assistant.id}
-            onClick={() => setAssistantId(assistant.id)}
+            onClick={() => {
+              history.setMatches({
+                assistantId: assistant.id,
+              })
+            }}
           >
             {assistant.name || 'Untitled assistant'}
           </div>

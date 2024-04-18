@@ -3,13 +3,12 @@ import { useContext, useState } from 'preact/hooks'
 
 import Sidebar from './components/Sidebar'
 import { AppContext } from '../App'
-import LoadIndicator from './components/LoadIndicator'
 import LoadingButton from './components/LoadingButton'
 
 const Settings = () => {
   const { OPENAI_API_KEY, setOPENAI_API_KEY, logout } = useContext(AppContext)
 
-  const [key, setKey] = useState(OPENAI_API_KEY)
+  const [key, setKey] = useState('')
   const [errMsg, setErrMsg] = useState('')
 
   const handleKey = async () => {
