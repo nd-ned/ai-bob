@@ -35,8 +35,9 @@ const Settings = () => {
     return (
       <div>
         <p>
-          Welcome to the OpenAI Playground! To get started, you'll need to enter your OpenAI API key
-          in the settings. If you don't have one, you can sign up for a free account at{' '}
+          Hello my name Bob, your customizable AI assistant. To get started, you'll need to enter
+          your OpenAI API key in the settings. If you don't have one, you can sign up for a free
+          account at{' '}
           <a href="https://platform.openai.com/signup" target="_blank">
             https://platform.openai.com/signup
           </a>
@@ -44,7 +45,7 @@ const Settings = () => {
         </p>
         <div className="flex-between">
           <input
-            className="input mr-1"
+            className="input mr10"
             type="text"
             value={key}
             onChange={(e) => {

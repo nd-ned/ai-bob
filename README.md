@@ -1,6 +1,6 @@
-# AI-Mate
+# AI-Bob
 
-> AI Mate is a Chrome extension allows you to create and customize your own AI assistant.
+> AI Bob is a Chrome extension allows you to create and customize your own AI assistant.
 
 ## Installing
 
@@ -13,7 +13,7 @@
 run the command
 
 ```shell
-$ cd ai-mate
+$ cd ai-bob
 
 $ npm run dev
 ```
@@ -21,7 +21,7 @@ $ npm run dev
 ### Chrome Extension Developer Mode
 
 1. set your Chrome browser 'Developer mode' up
-2. click 'Load unpacked', and select `ai-mate/build` folder
+2. click 'Load unpacked', and select `ai-bob/build` folder
 
 ### Nomal FrontEnd Developer Mode
 
